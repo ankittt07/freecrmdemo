@@ -1,8 +1,19 @@
-node{
-stage('SCM Checkout'){
-git 'https://github.com/ankittt07/freecrmdemo'
+pipeline{
+agent any
+stages {
+    stage('Compile Stages'){
+      steps{
+      withMaven(maven:'MAVEN1'){
+        sh 'mvn clean compile'
+        }
+    }
 }
-stage('Compile-Package'){
-sh 'mvn package'
-}
+stage('Testing Stage'){
+ stage('Compile Stages'){
+      steps{
+      withMaven(maven:'MAVEN1'){
+        sh 'mvn test'
+        }
+      }
+
 }
