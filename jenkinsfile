@@ -1,0 +1,9 @@
+node{
+stage('SCM Checkout){
+git 'https://github.com/ankittt07/freecrmdemo'
+}
+stage('Compile-Package){
+bat 'mvn package'
+}
+
+}
